@@ -9,7 +9,6 @@
  * }
  */
 class Solution {
-    ListNode endElement=new ListNode();
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode start= head;
         ListNode beforeSwap= new ListNode();
@@ -22,9 +21,10 @@ class Solution {
             if(count==k){
                 ListNode next=current.next;
                 current.next=null;
-                beforeSwap.next=reverseList(start);
+                ListNode[] reversedList= reverseList(start);
+                beforeSwap.next=reversedList[0];
                 start=next;
-                beforeSwap=endElement;
+                beforeSwap=reversedList[1];
                 beforeSwap.next=next;
                 current=beforeSwap;
                 count=0;
@@ -35,16 +35,16 @@ class Solution {
         
     }
 
-    public ListNode reverseList(ListNode node){
+    public ListNode[] reverseList(ListNode node){
+        ListNode [] tab= new ListNode[2];
         ListNode previous=null;
         ListNode current= node;
-        endElement=node;
         while(current != null ){
             ListNode next= current.next;
             current.next=previous;
             previous=current;
             current=next;
         }
-        return previous;
+       return new ListNode[] { previous, node };
     }
 }
