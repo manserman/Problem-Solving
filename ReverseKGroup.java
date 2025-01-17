@@ -36,7 +36,6 @@ class Solution {
     }
 
     public ListNode[] reverseList(ListNode node){
-        ListNode [] tab= new ListNode[2];
         ListNode previous=null;
         ListNode current= node;
         while(current != null ){
