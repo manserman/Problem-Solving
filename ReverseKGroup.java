@@ -9,6 +9,7 @@
  * }
  */
 class Solution {
+    ListNode endElement=new ListNode();
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode start= head;
         ListNode beforeSwap= new ListNode();
@@ -23,8 +24,7 @@ class Solution {
                 current.next=null;
                 beforeSwap.next=reverseList(start);
                 start=next;
-                while(beforeSwap.next!=null)
-                    beforeSwap=beforeSwap.next;
+                beforeSwap=endElement;
                 beforeSwap.next=next;
                 current=beforeSwap;
                 count=0;
@@ -38,6 +38,7 @@ class Solution {
     public ListNode reverseList(ListNode node){
         ListNode previous=null;
         ListNode current= node;
+        endElement=node;
         while(current != null ){
             ListNode next= current.next;
             current.next=previous;
